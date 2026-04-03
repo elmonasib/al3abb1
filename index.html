@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/webp" href="images/logo.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+    <nav class="nav-container">
+        <div class="logo-section">
+            <a href="index.html">
+                <img src="images/logo.webp" alt="متجر النوادر" class="header-logo">
+            </a>
+        </div>
+
+        <ul class="nav-links">
+    <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+    <li><a href="javascript:void(0)" onclick="showPolicy('about')"><i class="fas fa-info-circle"></i> من نحن</a></li>
+    
+    <li class="mobile-only"><a href="javascript:void(0)" onclick="filterByCategory('special', this)"><i class="fas fa-percentage"></i> عروض خاصة</a></li>
+    <li class="mobile-only"><a href="javascript:void(0)" onclick="showPolicy('shipping')"><i class="fas fa-truck"></i> معلومات الشحن</a></li>
+    <li class="mobile-only"><a href="javascript:void(0)" onclick="filterByCategory('latest', this)"><i class="fas fa-bolt"></i> أحدث الألعاب</a></li>
+    <li class="mobile-only"><a href="javascript:void(0)" onclick="showPolicy('privacy')"><i class="fas fa-user-shield"></i> الخصوصية</a></li>
+    <li class="mobile-only"><a href="javascript:void(0)" onclick="showPolicy('exchange')"><i class="fas fa-sync"></i> التبديل والضمان</a></li>
+</ul>
+
+       <div class="header-actions">
+    <div class="search-container">
+    <input type="text" id="main-search" placeholder="ابحث عن لعبة..." oninput="handleSearch(this.value)">
+    <i class="fas fa-search search-icon"></i>
+</div>
+    
+   
+</div>
+        
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+</header>
+
+    <main>
+
+<div class="banner-section">
+    <a href="#" class="toy-banner">
+        <img src="images/987.webp" alt="نوادر الألعاب">
+    </a>
+</div>
+
+        <div class="categories-container">
+    <button class="cat-btn active" onclick="filterByCategory('all', this)">
+        <i class="fas fa-th-large"></i> الكل
+    </button>
+    <button class="cat-btn" onclick="filterByCategory('carton', this)">
+        <i class="fas fa-ghost"></i> كرتون
+    </button>
+    <button class="cat-btn" onclick="filterByCategory('anime', this)">
+        <i class="fas fa-mask"></i> أنمي
+    </button>
+    <button class="cat-btn" onclick="filterByCategory('cars', this)">
+        <i class="fas fa-car"></i> سيارات
+    </button>
+    <button class="cat-btn" onclick="filterByCategory('games', this)">
+        <i class="fas fa-gamepad"></i> ألعاب
+    </button>
+
+    <button class="cat-btn" onclick="filterByCategory('animal', this)">
+        <i class="fas fa-gamepad"></i> حيوانات
+    </button>
+
+    <button class="cat-btn" onclick="filterByCategory('dooll', this)">
+        <i class="fas fa-gamepad"></i> دمى
+    </button>
+    
+</div>
+
+        <div class="products-grid" id="products-container"></div>
+
+        <div id="payment-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div id="product-detail-area"></div>
+                <button id="whatsapp-btn" class="whatsapp-confirm-btn">تأكيد الشراء عبر WhatsApp</button>
+            </div>
+        </div>
+    </main>
+
+   <footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h4 class="footer-title">عن متجر </h4>
+            <p class="footer-text">وجهتكم الأولى في المغرب للحصول على أندر الألعاب الكلاسيكية والقطع المستعملة بحالة ممتازة. نحن نهتم بالجودة والأصالة.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-title">سياسات المتجر</h4>
+            <ul class="footer-links">
+                <li><a href="javascript:void(0)" onclick="showPolicy('privacy')"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
+                <li><a href="javascript:void(0)" onclick="showPolicy('exchange')"><i class="fas fa-exchange-alt"></i> سياسة التبديل</a></li>
+                <li><a href="javascript:void(0)" onclick="showPolicy('refund')"><i class="fas fa-undo"></i> استرجاع النقود</a></li>
+                <li><a href="javascript:void(0)" onclick="showPolicy('shipping')"><i class="fas fa-truck"></i> معلومات الشحن</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-title">روابط سريعة</h4>
+            <ul class="footer-links">
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#">أحدث الألعاب</a></li>
+                <a href="javascript:void(0)" onclick="filterByCategory('special', this)">عروض خاصة</a>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4 class="footer-title">تواصل معنا</h4>
+            <ul class="contact-info">
+                <li><i class="fas fa-phone-alt"></i> 0631743274</li>
+                <li><i class="fas fa-envelope"></i> contact@al3abb.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> طنجة، المغرب</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>جميع الحقوق محفوظة &copy; 2026 AL3ABB.COM</p>
+    </div>
+</footer>
+
+<div id="policy-modal" class="modal">
+    <div class="modal-content policy-content">
+        <span class="close-btn" onclick="closePolicyModal()">&times;</span>
+        <div id="policy-text-area">
+            </div>
+    </div>
+</div>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

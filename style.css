@@ -1,0 +1,756 @@
+
+
+:root {
+    --primary-orange: #ff8605;
+    --dark-bg: #121212;
+    --card-bg: #1e1e1e;
+    --whatsapp-green: #25D366;
+    --text-white: #ffffff;
+}
+
+/* 1. استيراد الخط في أول سطر */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/* 2. استهداف النصوص فقط وتجنب الأيقونات */
+html, body, div, p, span, a, h1, h2, h3, h4, h5, h6, li, button, input, td, th {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* 3. استثناء أي عنصر يستخدم Font Awesome (الأيقونات) لضمان ظهورها */
+.fa, .fas, .far, .fab, [class*="fa-"] {
+    font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", fontAwesome !important;
+}
+
+/* 4. بقية إعدادات ملفك الأصلية كما هي */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Tahoma', sans-serif; }
+body { background-color: var(--dark-bg); color: var(--text-white); direction: rtl; }
+
+.main-header {
+    background: rgba(0, 0, 0, 0.85); /* خلفية شبه شفافة */
+    backdrop-filter: blur(10px); /* تأثير الضباب الزجاجي */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+    padding: 10px 0;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.header-logo {
+    height: 40px;
+    transition: 0.3s;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-orange);
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+
+.icon-btn:hover {
+    color: var(--primary-orange);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: var(--primary-orange);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 50%;
+    border: 20px #ff8605;
+}
+
+/* تنسيق الموبايل */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* سنحتاج جافا سكريبت لإظهار القائمة الجانبية */
+    }
+    
+    .header-logo {
+        height: 25px;
+    }
+}
+/* قسم الحصان البرتقالي المركزي */
+
+.attention-horse { width: 90px; height: 90px; margin: 0 auto 15px; color: var(--primary-orange); display: block; }
+
+.categories-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+.cat-btn { background: #252525; color: white; border: 1px solid #444; padding: 10px 25px; border-radius: 30px; cursor: pointer; transition: 0.3s; }
+.cat-btn.active, .cat-btn:hover { background: var(--primary-orange); border-color: var(--primary-orange); }
+
+.products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 0 5% 50px; }
+
+/* بطاقة المنتج */
+.card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #333; transition: 0.3s; cursor: pointer; position: relative; }
+.card:hover { transform: translateY(-8px); border-color: var(--primary-orange); }
+
+.card-img-container { position: relative; width: 100%; height: 160px; }
+.card-img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+/* علامة جديد */
+.badge-new { position: absolute; top: 10px; right: 10px; background: var(--primary-orange); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; z-index: 10; }
+
+/* تصميم البطاقة الجديد: بسيط وفخم */
+.card-info {
+    padding: 12px 5px; /* تقليل الحشو */
+    text-align: center; /* توسيط النص دائماً أجمل في التصاميم البسيطة */
+    background: transparent; /* حذف الخلفيات المتدرجة */
+}
+
+.card-info h3 {
+    font-size: 1.0rem; /* خط أصغر وأنيق */
+    color: #ffffff; /* لون رمادي فاتح وليس أبيض فاقع */
+    font-weight: 400; /* خط نحيف */
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+.product-specs {
+    font-size: 0.75rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    
+}
+
+.product-specs span {
+    display: inline-block;
+}
+
+/* تمييز كلمة 'جديد' بلون مختلف قليلاً إذا أردت */
+.product-specs span:last-child {
+    color: var(--primary-orange);
+    font-weight: bold;
+}
+
+.price {
+    color: var(--primary-orange);
+    font-weight: 600;
+    font-size: 0.95rem; /* سعر واضح ولكن غير ضخم */
+    display: block;
+}
+
+/* إضافة تأثير "توهج" خفيف جداً عند تمرير الماوس على البطاقة كاملة */
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-orange);
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.1);
+}
+
+/* جعل صورة المنتج تأخذ مساحة أكبر وتظهر بوضوح */
+.card-img-container {
+    height: 180px; /* زيادة الطول قليلاً */
+    background: #151515;
+}
+
+/* تمييز حالة المنتج داخل النافذة */
+#product-detail-area b {
+    color: var(--primary-orange);
+}
+
+.main-modal-img {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* النافذة المنبثقة */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center; }
+.modal-content { background: #fff; color: #333; padding: 30px; border-radius: 20px; width: 90%; max-width: 450px; position: relative; text-align: center; }
+.close-btn { position: absolute; left: 15px; top: 10px; font-size: 1.8rem; cursor: pointer; }
+.main-modal-img { width: 100%; max-height: 250px; object-fit: contain; border-radius: 12px; margin-bottom: 15px; background: #f0f0f0; }
+.thumbnails-container { display: flex; gap: 8px; justify-content: center; margin-bottom: 20px; }
+.thumb-img { width: 55px; height: 55px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; cursor: pointer; }
+.whatsapp-confirm-btn { background: var(--whatsapp-green); color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+/* تنسيق الفوتر المميز */
+.main-footer {
+    background-color: #0b0b0b;
+    color: #fff;
+    padding: 20px 5% 20px;
+    border-top: 3px solid var(--primary-orange);
+    margin-top: 80px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    color: var(--primary-orange);
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-orange);
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #bbb;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-orange);
+    transform: translateX(-5px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-icons a {
+    width: 35px;
+    height: 35px;
+    background: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background: var(--primary-orange);
+}
+
+.contact-info {
+    list-style: none;
+}
+
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    color: var(--primary-orange);
+}
+
+.payment-methods {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cash-label {
+    font-size: 0.7rem;
+    border: 1px solid #444;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #222;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* تنسيق محتوى السياسات داخل النافذة */
+.policy-content {
+    text-align: right;
+    max-width: 550px;
+    background: #fff;
+    padding: 35px;
+    border-radius: 15px;
+    direction: rtl;
+}
+
+.policy-content h2 {
+    color: var(--primary-orange);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.policy-content p {
+    color: #444;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+
+
+.policy-close-btn {
+    margin-top: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* تصميم الفوتر "المضغوط" والاحترافي للهاتف */
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 20px 10px; /* تقليل المساحات الميتة */
+        background-color: #050505; /* أسود أعمق للفخامة */
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px; /* تقليل الفجوة جداً */
+    }
+
+    /* تصغير قسم "عن المتجر" ودمجه */
+    .footer-col:first-child {
+        border-bottom: 1px solid #222;
+        padding-bottom: 15px;
+    }
+
+    .footer-text {
+        font-size: 0.75rem;
+        max-width: 90%;
+        margin-bottom: 10px;
+       
+    }
+
+    /* جعل الروابط والسياسات تظهر بجانب بعضها في سطرين بدل قائمة طويلة */
+    .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 15px; /* مسافات جانبية */
+        padding: 0;
+    }
+
+    .footer-links li {
+        margin-bottom: 0;
+    }
+
+    .footer-links a {
+        font-size: 0.7rem;
+        background: #111; /* خلفية خفيفة لكل رابط لتبدو كأزرار صغيرة */
+        padding: 5px 10px;
+        border-radius: 4px;
+        border: 1px solid #222;
+    }
+
+    /* قسم التواصل في سطر واحد */
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.7rem;
+    }
+
+    .contact-info li {
+        margin-bottom: 0;
+    }
+
+    /* العناوين: تصغيرها وحذف الخط البرتقالي لتقليل الزحمة */
+    .footer-title {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .footer-title::after {
+        display: none; /* حذف الخط لتوفير مساحة */
+    }
+
+    .social-icons {
+        margin-top: 5px;
+    }
+}
+
+/* --- تنسيق شريط البحث المطور وتحديد موقعه جهة اليسار --- */
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 140, 0, 0.3);
+    border-radius: 20px;
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+    
+    /* هذا السطر هو المسؤول عن دفع العنصر لليسار في نظام RTL */
+    margin-right: auto; 
+    margin-left: 15px;
+}
+
+#main-search {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: white !important;
+    padding: 5px;
+    width: 250px; /* جعلته "سيد بار كبير" كما طلبت */
+    font-size: 0.9rem;
+}
+
+/* تحسين المظهر عند التفاعل */
+.search-container:focus-within {
+    border-color: #FF8C00;
+    background: rgba(255, 255, 255, 0.1);
+    width: 300px; /* يتوسع أكثر عند النقر */
+}
+
+.search-icon {
+    color: #FF8C00;
+    font-size: 0.9rem;
+}
+
+/* تنسيق الموبايل لضمان عدم خروج الشريط عن الشاشة */
+@media (max-width: 768px) {
+    .search-container {
+        width: auto;
+        margin-right: 10px;
+    }
+    #main-search {
+        width: 140px;
+        height: 25px;
+    }
+    .search-container:focus-within {
+        width: 150px;
+    }
+}
+
+/* --- تنسيق قائمة الموبايل (الثلاث شرطات) --- */
+
+/* 1. إظهار زر القائمة في الموبايل فقط */
+.menu-toggle {
+    display: none; /* مخفي في الشاشات الكبيرة */
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+@media (max-width: 768px) {
+    /* زر الثلاث شرطات */
+    .menu-toggle {
+        display: block !important;
+        cursor: pointer;
+        z-index: 10001;
+        color: #FF8C00;
+        padding-left: 20px;
+    }
+
+    /* القائمة الجانبية: 40% من اليسار */
+    .nav-links {
+        display: none; 
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0; 
+        width: 40%; 
+        height: 500px;
+        background: #ffffff;
+        padding-top: 80px;
+        z-index: 10000;
+        border-right: 3px solid var(--primary-orange);
+        border-bottom: 3px solid var(--primary-orange);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        border-radius: 10px;
+        
+        gap: 5px;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+        transform: translateX(0);
+    }
+
+    /* محاذاة العناصر لليسار */
+    .nav-links li {
+        width: 100%;
+        text-align: right ; /* محاذاة النص لليسار */
+        padding: 10px 15px;
+        border-bottom: 1px solid #FF8C00;
+    }
+
+    /* ترتيب الرابط والأيقونة لتبدأ من اليسار */
+    .nav-links li a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start; /* البداية من اليسار */
+        flex-direction: row; /* الأيقونة ثم النص من اليسار */
+        color: rgba(15, 15, 15, 0.98);
+        text-decoration: none;
+        font-size: 0.9rem;
+        gap: 10px;
+    }
+
+    /* تنسيق الأيقونة */
+    .nav-links li a i {
+        color: (15, 15, 15, 0.98);
+        width: 20px;
+        text-align: center;
+    }
+
+    .nav-links li a:hover {
+        color: fff;
+    }
+}
+
+/* --- تنسيق قسم البنر وتوسيطه في الصفحة --- */
+.banner-section {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* توسيط أفقي تماماً */
+    align-items: center;    /* توسيط عمودي إذا لزم الأمر */
+    margin-top: 25px;       /* مسافة إضافية من الهيدر للفخامة */
+    margin-bottom: 30px;
+    padding: 0 5%;          /* حماية الجوانب في الشاشات المتوسطة */
+}
+
+/* --- تكبير البنر في وضع الحاسوب --- */
+.toy-banner {
+    display: block;
+    width: 1000px; /* تم التكبير من 750px إلى 1000px */
+    height: 150px; /* زيادة الارتفاع ليتناسب مع العرض الجديد */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 12px; /* إضافة انحناء بسيط للزوايا لمظهر عصري */
+    overflow: hidden;
+}
+
+.toy-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* لضمان ملء الصورة للمساحة الجديدة دون تشويه */
+    border-radius: 12px;
+    
+}
+
+/* تأثير التكبير عند تمرير الماوس */
+.toy-banner:hover {
+    transform: scale(1.02);
+}
+
+/* الحفاظ على استجابة الجوال تلقائياً كما هي في الكود الأصلي */
+@media (max-width: 768px) {
+    .toy-banner {
+        width: 95%;
+        height: auto;
+    }
+}
+
+/* --- تعديل حجم أزرار الأقسام للجوال فقط --- */
+@media (max-width: 768px) {
+    .categories-container {
+        gap: 6px; /* تقليل المسافة بين الأزرار */
+        padding: 5px 1% 5px; /* تقليل الحشو العلوي */
+
+    }
+
+    .cat-btn {
+        padding: 1px 15px; /* تصغير الحشو الداخلي للزر */
+        font-size: 0.70rem; /* تصغير حجم الخط */
+        border-radius: 20px; /* جعل الانحناء أنعم يتناسب مع الحجم الصغير */
+    }
+
+    .cat-btn i {
+        font-size: 0.8rem; /* تصغير حجم الأيقونة داخل الزر */
+        margin-left: 4px;
+    }
+}
+
+/* --- تنسيق معرض الصور داخل النافذة المنبثقة فقط --- */
+.modal-image-section {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.main-modal-img {
+    width: 100%;
+    max-height: 400px; /* تحديد أقصى ارتفاع للصورة */
+    object-fit: contain;
+    border-radius: 12px;
+    background: #1a1a1a; /* خلفية داكنة للصور الشفافة */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
+}
+
+.modal-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 5px;
+}
+
+.modal-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid #333;
+    transition: all 0.3s ease;
+}
+
+/* تمييز الصورة النشطة باللون البرتقالي */
+.modal-thumb.active {
+    border-color: var(--primary-orange);
+    transform: scale(1.1);
+    box-shadow: 0 0 8px var(--primary-orange);
+}
+
+.modal-thumb:hover {
+    border-color: var(--primary-orange);
+    opacity: 0.8;
+}
+
+/* تحسين شكل النافذة على الجوال */
+@media (max-width: 768px) {
+    .modal-thumb {
+        width: 50px;
+        height: 50px;
+    }
+    .main-modal-img {
+        max-height: 300px;
+    }
+}
+
+/* إخفاء روابط الجوال الإضافية في وضع الحاسوب */
+@media (min-width: 769px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* --- التنسيق الجديد لسطر الثمن والتوفر --- */
+.price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: nowrap; /* يمنع النزول لسطر جديد */
+    margin-bottom: 6px;
+}
+
+.availability-tag {
+    font-size: 0.65rem;
+    background: #27ae60;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* --- تنسيق سطر الدفع عند الاستلام --- */
+.payment-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cod-tag {
+    font-size: 0.65rem;
+    background: #34495e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: 90%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* تحسينات إضافية لوضع الموبايل */
+@media (max-width: 768px) {
+    .price-row { gap: 4px; }
+    .price { font-size: 0.85rem !important; }
+    .old-price { font-size: 0.7rem !important; }
+    .availability-tag, .cod-tag { font-size: 0.6rem; }
+}
