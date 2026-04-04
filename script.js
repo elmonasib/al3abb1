@@ -142,17 +142,24 @@ function openModal(p) {
             <img id="main-modal-img" src="${productImages[0]}" class="main-modal-img" style="width: 100%; max-height: 300px; object-fit: contain; border-radius: 10px; background: #111;" onerror="this.src='${placeholder}'">
             ${modalThumbsHtml}
         </div>
-        <div class="modal-info-section">
-            <h2>${p.name}</h2>
-            <p><strong>الحالة:</strong> ${p.status || 'مستعمل'}</p>
-            <p><strong>الطول:</strong> ${p.length || '--'}</p>
-            <p class="modal-price-tag" style="margin-top:15px; font-weight:bold; font-size:1.8rem; color:var(--primary-orange);">${p.price}</p>
-            <p style="color: #27ae60; font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-truck"></i> التوصيل لكل المدن - الدفع عند الاستلام</p>
+        <div class="modal-info-section" style="text-align: center; padding-top: 15px;">
+            <h2 style="margin-bottom: 10px;">${p.name}</h2>
+            
+            <p class="modal-description" style="color: #67756a; line-height: 1.6; margin-bottom: 15px; font-size: 0.95rem;">
+                ${p.description || 'لا يوجد وصف متاح لهذا المنتج.'}
+            </p>
+
+            <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; color: #000000;">
+                <span><strong>الحالة:</strong> ${p.status || 'مستعمل'}</span>
+                <span><strong>الطول:</strong> ${p.length || '--'}</span>
+            </div>
+
+            <p class="modal-price-tag" style="font-weight:bold; font-size:1.8rem; color:var(--primary-orange); margin-bottom: 10px;">${p.price}</p>
+            <p style="color: #27ae60; margin: 20px; font-size: 0.9rem;"><i class="fas fa-truck"></i> التوصيل لكل المدن - الدفع عند الاستلام</p>
         </div>
     `;
     modal.style.display = 'flex';
 }
-
 function changeModalImage(thumb) {
     const mainImg = document.getElementById('main-modal-img');
     if (mainImg) {

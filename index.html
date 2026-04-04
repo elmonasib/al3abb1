@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/webp" href="images/logo.webp">
+    <link rel="icon" type="image/webp" href="images/logohome.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retro Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -71,13 +71,16 @@
     </button>
 
     <button class="cat-btn" onclick="filterByCategory('animal', this)">
-        <i class="fas fa-gamepad"></i> حيوانات
+        <i class="fas fa-cat"></i> حيوانات
     </button>
 
     <button class="cat-btn" onclick="filterByCategory('dooll', this)">
-        <i class="fas fa-gamepad"></i> دمى
+        <i class="fas fa-female"></i> دمى
     </button>
     
+    <button class="cat-btn" onclick="filterByCategory('cards', this)">
+    <i class="fas fa-layer-group"></i> بطاقات
+</button>
 </div>
 
         <div class="products-grid" id="products-container"></div>
@@ -93,22 +96,13 @@
 
    <footer class="main-footer">
     <div class="footer-container">
-        <div class="footer-col">
-            <h4 class="footer-title">عن متجر </h4>
-            <p class="footer-text">وجهتكم الأولى في المغرب للحصول على أندر الألعاب الكلاسيكية والقطع المستعملة بحالة ممتازة. نحن نهتم بالجودة والأصالة.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-            </div>
-        </div>
+        
 
         <div class="footer-col">
             <h4 class="footer-title">سياسات المتجر</h4>
             <ul class="footer-links">
                 <li><a href="javascript:void(0)" onclick="showPolicy('privacy')"><i class="fas fa-shield-alt"></i> سياسة الخصوصية</a></li>
                 <li><a href="javascript:void(0)" onclick="showPolicy('exchange')"><i class="fas fa-exchange-alt"></i> سياسة التبديل</a></li>
-                <li><a href="javascript:void(0)" onclick="showPolicy('refund')"><i class="fas fa-undo"></i> استرجاع النقود</a></li>
                 <li><a href="javascript:void(0)" onclick="showPolicy('shipping')"><i class="fas fa-truck"></i> معلومات الشحن</a></li>
             </ul>
         </div>
@@ -131,6 +125,10 @@
             </ul>
         </div>
     </div>
+    <a href="https://wa.me/212631743274" class="whatsapp-btn" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-text">تواصل معنا</span>
+</a>
 
     <div class="footer-bottom">
         <p>جميع الحقوق محفوظة &copy; 2026 AL3ABB.COM</p>
@@ -147,5 +145,6 @@
 
     <script src="products.js"></script>
     <script src="script.js"></script>
+    
 </body>
 </html>

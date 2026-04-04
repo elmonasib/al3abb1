@@ -522,7 +522,7 @@ body { background-color: var(--dark-bg); color: var(--text-white); direction: rt
         cursor: pointer;
         z-index: 10001;
         color: #FF8C00;
-        padding-left: 20px;
+        padding-left: 10px;
     }
 
     /* القائمة الجانبية: 40% من اليسار */
@@ -541,7 +541,7 @@ body { background-color: var(--dark-bg); color: var(--text-white); direction: rt
         border-bottom: 3px solid var(--primary-orange);
         transform: translateX(-100%);
         transition: transform 0.3s ease-in-out;
-        border-radius: 10px;
+        border-radius: 0 0 10px 0;
         
         gap: 5px;
     }
@@ -753,4 +753,66 @@ body { background-color: var(--dark-bg); color: var(--text-white); direction: rt
     .price { font-size: 0.85rem !important; }
     .old-price { font-size: 0.7rem !important; }
     .availability-tag, .cod-tag { font-size: 0.6rem; }
+}
+
+/* تنسيق زر الواتساب العائم - متجر AL3ABB */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px; /* جهة اليسار لعدم حجب محتوى القوائم */
+    background-color: #25d366; /* أخضر واتساب */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    text-decoration: none;
+    font-family: 'Tajawal', sans-serif; /* لضمان تناسق الخط العربي */
+    font-weight: bold;
+    z-index: 9999;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    
+    /* "أفضل دائرة": تصميم دائري بلمسة زاوية واحدة علوية يمنى */
+    border-radius: 50px 10px 50px 50px; 
+    
+    transition: all 0.4s ease;
+}
+
+/* أيقونة الواتساب */
+.whatsapp-btn i {
+    font-size: 24px;
+}
+
+/* نص "تواصل معنا" */
+.whatsapp-text {
+    font-size: 15px;
+}
+
+/* تأثير عند تمرير الماوس (Hover) */
+.whatsapp-btn:hover {
+    background-color: var(--primary-orange); /* يتحول للبرتقالي الخاص بالمتجر */
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(255, 136, 0, 0.3);
+    color: white;
+}
+
+/* تنسيق خاص للهواتف (تصميم دائري أصغر) */
+@media (max-width: 768px) {
+    .whatsapp-btn {
+        padding: 15px;
+        bottom: 20px;
+        left: 20px;
+        /* تدوير دائري أكثر للهاتف مع الحفاظ على الزاوية */
+        border-radius: 50% 50% 50% 50%; 
+    }
+    
+    .whatsapp-text {
+        display: none; /* إخفاء النص في الهاتف ليبقى الزر دائرياً وأنيقاً */
+    }
+    
+    .whatsapp-btn i {
+        font-size: 20px;
+        margin: 0;
+    }
 }
